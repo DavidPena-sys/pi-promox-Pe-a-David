@@ -2,16 +2,16 @@
 
 ## Contexto de la observacion
 
-- Fecha y sistema utilizado: PENDIENTE.
+- Fecha y sistema utilizado: 13/10/2026 | Lliurex y Windows Hiren's Boot
 - Modalidad, equipo anfitrion y VM VirtualBox si procede: PENDIENTE.
-- Version de Proxmox prevista: PENDIENTE.
+- Version de Proxmox prevista: Proxmox VE 9.2
 
 ## Inventario inicial
 
 | Area | Dato observado y evidencia | Especificacion y fuente | Limite o diferencia | Justificacion |
 |---|---|---|---|---|
-| CPU | | | | |
-| RAM | | | | |
+| CPU | Intel Pentium G4560 @ 3,5 GHz, 2 núcleos, 4 hilos, 14nm, L 3 3 MiN, VT-x | Ficha Intel y comando LSCPU | Solo 2 Núcleos físicos y el reloj mínimo de 800 MHz | VT-x es el requisito de CPU para VVM, y lo tiene |
+| RAM | 8 GiB DDR4, 2 × 4 GiB Crucial CT4G4DFS824A, módulos 33/17 y 34/17, dual chanel, funcionando a DDR4-2400 CL17 | Módulos DDR4-2400 de 1,20 V, la placa admite hasta 64 GB, y la fuente es el CPU-Z | El límite es de 7,6 GiB porque el firmware tiene parte reservada, módulos en el slot 1 y 3 | Ocupa solo 2 de 4 slots, y podría ampliarse si hiciera falta |
 | Almacenamiento | | | | |
 | Red | | | | |
 | Plataforma | | | | |
