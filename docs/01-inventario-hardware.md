@@ -10,11 +10,11 @@
 
 | Area | Dato observado y evidencia | Especificacion y fuente | Limite o diferencia | Justificacion |
 |---|---|---|---|---|
-| CPU | Intel Pentium G4560 @ 3,5 GHz, 2 núcleos, 4 hilos, 14nm, L 3 3 MiB, VT-x | Ficha Intel y comando LSCPU | Solo 2 Núcleos físicos y el reloj mínimo de 800 MHz | VT-x es el requisito de CPU para KVM, y lo tiene |
+| CPU | Intel Pentium G4560 @ 3,5 GHz, 2 núcleos, 4 hilos, 14nm, L3 3 MiB, VT-x | Ficha Intel y comando LSCPU | Solo 2 Núcleos físicos y el reloj mínimo de 800 MHz | VT-x es el requisito de CPU para KVM, y lo tiene |
 | RAM | 8 GB DDR4, 2 × 4 GB Crucial CT4G4DFS824A, módulos 33/17 y 34/17, dual channel, funcionando a DDR4-2400 CL17 | Módulos DDR4-2400 de 1,20 V, la placa admite hasta 64 GB, y la fuente es CPU-Z, y la ficha de ASUS | El límite es de 7,6 GB porque el firmware tiene parte reservada, módulos en el slot 1 y 3 | Ocupa solo 2 de 4 slots, y podría ampliarse si hiciera falta |
 | Almacenamiento | HDD Toshiba DT01ACA050, 500,1 GB (465,8 GB utilizables) | Tanto con el comando diskpart, como con el Disk Manager | Un solo disco y sin redundancia. | Es un HDD, no un SSD y todo el servicio dependería de el |
 | Red | NIC Realtek RTL8168/8111 Gigabit| Realtek RTL8111/8168, 1000 Mbps máx, y se ve tanto con el ip a, como con el Hiren's Boot | No se midió la velocidad real, porque no teníamos cable | Una sola NIC |
-| Plataforma | ASUS PRIME B250M-A, chipset B250, BIOS AMI(0810) | Página de soporte de ASUS y se vio con el CPU-Z | BIOS de 2017 | La placa es compatbible con el G4560 |
+| Plataforma | ASUS PRIME B250M-A, chipset B250, BIOS AMI(0810) | Página de soporte de ASUS y se vio con el CPU-Z | BIOS de 2017 | La placa es compatible con el G4560 |
 
 ## 1. Puedo instalar Proxmox en este equipo?
 
