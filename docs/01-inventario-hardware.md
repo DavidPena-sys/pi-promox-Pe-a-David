@@ -10,7 +10,7 @@
 
 | Area | Dato observado y evidencia | Especificacion y fuente | Limite o diferencia | Justificacion |
 |---|---|---|---|---|
-| CPU | | | | |
+| CPU | s | | | |
 | RAM | | | | |
 | Almacenamiento | | | | |
 | Red | | | | |
