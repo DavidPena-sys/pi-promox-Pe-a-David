@@ -12,7 +12,7 @@
 |---|---|---|---|---|
 | CPU | Intel Pentium G4560 @ 3,5 GHz, 2 núcleos, 4 hilos, 14nm, L3 3 MiB, VT-x | Ficha Intel y comando LSCPU | Solo 2 Núcleos físicos y el reloj mínimo de 800 MHz | VT-x es el requisito de CPU para KVM, y lo tiene |
 | RAM | 8 GB DDR4, 2 × 4 GB Crucial CT4G4DFS824A, módulos 33/17 y 34/17, dual channel, funcionando a DDR4-2400 CL17 | Módulos DDR4-2400 de 1,20 V, la placa admite hasta 64 GB, y la fuente es CPU-Z, y la ficha de ASUS | El límite es de 7,6 GB porque el firmware tiene parte reservada, módulos en el slot 1 y 3 | Ocupa solo 2 de 4 slots, y podría ampliarse si hiciera falta |
-| Almacenamiento | HDD Toshiba DT01ACA050, 500,1 GB (465,8 GB utilizables) | Tanto con el comando diskpart, como con el Disk Manager | Un solo disco y sin redundancia. | Es un HDD, no un SSD y todo el servicio dependería de el |
+| Almacenamiento | HDD Toshiba DT01ACA050, 500,1 GB (465,8 GB utilizables) | Tanto con el comando diskpart, como con el Disk Manager | Un solo disco y sin redundancia. | Es un HDD, no un SSD y todo el servicio dependeria de el |
 | Red | NIC Realtek RTL8168/8111 Gigabit| Realtek RTL8111/8168, 1000 Mbps máx, y se ve tanto con el ip a, como con el Hiren's Boot | No se midió la velocidad real, porque no teníamos cable | Una sola NIC |
 | Plataforma | ASUS PRIME B250M-A, chipset B250, BIOS AMI(0810) | Página de soporte de ASUS y se vio con el CPU-Z | BIOS de 2017 | La placa es compatible con el G4560 |
 
@@ -55,7 +55,7 @@ Cargas simultaneas: srv-aso y cli-linux encendidos a la vez funcionan si no se h
 | CPU | 2 núcleos / 4 hilos | Dos VM con carga a la vez se frenan | Repartir 2 vCPU por VM |
 | Disco (rendimiento) | HDD de 7200 rpm | Arrancar o actualizar las dos VM a la vez es lento | Hacer arranques escalonados y copias fuera de horas |
 | Disco (integridad) | Un solo disco | Un fallo pierde todo, incluidas las copias del disco | Copiar las copias en un medio externo |
-| Red | 1 NIC de 1 Gbps | Un único punto de fallo | Una red interna entre vmbr1 entre srv-aso y cli-linux |
+| Red | 1 NIC de 1 Gbps | Un único punto de fallo | Una red interna vmbr1 entre srv-aso y cli-linux |
 
 ## 3. Que componentes son mas criticos en mi servidor y por que?
 
@@ -64,12 +64,12 @@ Distinguir cuello de botella, disponibilidad e integridad de los datos.
 
 | Prioridad y componente | Funcion | Efecto si es insuficiente | Efecto si falla | Evidencia y justificacion |
 |---|---|---|---|---|
-| 1. Disco | Guarda el SO, las VM y las copias | Cuello de botella de E/S con varias VM  | Se pierden disponiblidad e integridad | Un único HDD de 7200 rpm, es el único punto de fallo para los datos |
-| 2.RAM | Memoría de Proxmox y de las VM | Cuello de botella: Hacemos un swap en el HDD o el sistema mata procesos | Un módulo malo reduce a 4GB y no cabe todo | 7,6 GB visibles, es el límite de cuantas VM caben |
+| 1. Disco | Guarda el SO, las VM y las copias | Cuello de botella de E/S con varias VM  | Se pierden disponibilidad e integridad | Un único HDD de 7200 rpm, es el único punto de fallo para los datos |
+| 2.RAM | Memoria de Proxmox y de las VM | Cuello de botella: Hacemos un swap en el HDD o el sistema mata procesos | Un módulo malo reduce a 4GB y no cabe todo | 7,6 GB visibles, es el límite de cuantas VM caben |
 | 3. CPU | Cálculo de host y VM | Cuello de botella con cargas simultáneas | El host cae y todo con el | 2 núcleos / 4 hilos |
 
 Componente que mejoraria primero y motivo para priorizarlo frente a otro:
-Un SSD frente a más RAM, a que con el reparto de RAM alcanza perfectamente para 2-3 VM, pero el HDD es el cuello de botella de esto, sería riesgo de pérdida de datos y el factor que más se nota al arrancar varías VM. La RAM sería el segundo motivo, ya que hay slots libres.
+Un SSD frente a más RAM, porque con el reparto de RAM alcanza perfectamente para 2-3 VM, pero el HDD es el cuello de botella de esto, sería riesgo de pérdida de datos y el factor que más se nota al arrancar varias VM. La RAM sería el segundo motivo, ya que hay slots libres.
 
 ## Fuentes tecnicas
 
@@ -78,14 +78,14 @@ fabricante o plataforma virtual. Relacionarlas con las tres respuestas.
 
 | Fuente y URL | Version/modelo y fecha de consulta | Afirmacion respaldada | Aplicacion al nodo |
 |---|---|---|---|
-| pve.proxmox.com/pve-docs | Proxmox VE 9.2, consultada el 13/10/2026 | CPU de 64 bits con VT, 2 GB mínimo para el SO más los invitados, mínimos | Respuestas 1 y 2  |
+| pve.proxmox.com/pve-docs | Proxmox VE 9.2, consultada el 13/10/2026 | CPU de 64 bits con VT, 2 GB mínimo para el SO más los invitados | Respuestas 1 y 2  |
 | https://www.intel.com/content/www/us/en/products/sku/97143/intel-pentium-processor-g4560-3m-cache-3-50-ghz/specifications.html | Pentium G4560, consultada el 13/10/2026 | VT-x, núcleos/hilos, memoria soportada| Respuestas 1 y 2 |
 | https://www.asus.com/motherboards-components/motherboards/prime/prime-b250m-a/ | PRIME B250M-A, consultada el 13/10/2026 | Slots de RAM, máximo de RAM | Respuestas 2 y 3 |
 
 
 ## Dictamen de viabilidad
 
-Apto, apto con condiciones o no apto para la propuesta actual: Cumple los requisitos de Proxmox y admite dos VM ligeras a la vez, pero está muy limitado, sería apto pero con condiciones y límitaciones, las limitaciones serían el HDD, la RAM y la ausencia de redundancia.
+Apto, apto con condiciones o no apto para la propuesta actual: Cumple los requisitos de Proxmox y admite dos VM ligeras a la vez, pero está muy limitado, sería apto con condiciones y limitaciones, las limitaciones serían el HDD, la RAM y la ausencia de redundancia.
 
 Sintetizar las tres respuestas y las condiciones pendientes de comprobar.
 
