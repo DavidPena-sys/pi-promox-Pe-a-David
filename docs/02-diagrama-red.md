@@ -37,7 +37,7 @@ Puertos necesarios: 8006, puerto de proxmox
 flowchart TD
     I["Internet"] --> V0["vmbr0<br/>10.0.2.20"]
     V0 --> P["pve-peña<br/>Nodo Proxmox"]
-    P --> V1["vmbr1<br/>192.168.56.0/24"]
+    P --> V1["vmbr1<br/>192.168.56.20/24"]
     V1 --> S["srv-aso<br/>192.168.56.30"]
     V1 --> C["cli-linux<br/>192.168.56.40"]
 ```
