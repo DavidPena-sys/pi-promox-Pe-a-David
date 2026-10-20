@@ -12,10 +12,9 @@
 ## Tabla
 | Elemento | Nombre | IP | Función | Recursos |
 |---|---|---|---|---|
-|  |  |  |  |  |
-
-
-
+| Nodo Proxmox | pve-peña |  | Hipervisor |  |
+| Servidor ASO | srv-aso |  | Servidor principal |  |
+| Cliente | cli-linux |  | Pruebas |  |
 
 ## Evidencias
 
