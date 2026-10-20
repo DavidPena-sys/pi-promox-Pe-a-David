@@ -15,7 +15,10 @@ Red o VLAN de laboratorio: 192.168.56.0/24
 IPs de las VMs/LXC: 192.168.56.30/24 - Server y 192.168.56.40/24 - Cliente
 
 Gateway y DNS: 
-Gateway: cli-linux y srv-aso: 192.168.56.20, el del nodo. Nodo: 10.0.2.2, el habitual de VirtualBox. DNS: 8.8.8.8
+Gateway: 
+-cli-linux y srv-aso: 192.168.56.20, el del nodo. 
+-Nodo: 10.0.2.2, el habitual de VirtualBox. 
+-DNS: 8.8.8.8
 
 Puertos necesarios: 8006, puerto de proxmox
 
