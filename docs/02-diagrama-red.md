@@ -12,10 +12,10 @@ Bridge de Proxmox: vmbr0, es el bridge exterior y vmbr1, es el bridge del labora
 
 Red o VLAN de laboratorio: 192.168.56.0/24
 
-IPs de las VMs/LXC: 192.68.56.30/24 - Server y 192.168.56.40 - Cliente
+IPs de las VMs/LXC: 192.168.56.30/24 - Server y 192.168.56.40/24 - Cliente
 
 Gateway y DNS: 
-Gateway: cli-linux y svr-aso: 192.168.56.20, el del nodo. Nodo: 10.0.2.2, el habitual de VirtualBox. DNS: 8.8.8.8
+Gateway: cli-linux y srv-aso: 192.168.56.20, el del nodo. Nodo: 10.0.2.2, el habitual de VirtualBox. DNS: 8.8.8.8
 
 Puertos necesarios: 8006, puerto de proxmox
 
@@ -23,11 +23,9 @@ Puertos necesarios: 8006, puerto de proxmox
 | Elemento | Nombre | IP | Función | Recursos |
 |---|---|---|---|---|
 | Nodo Proxmox | pve-peña | 10.0.2.20/24 (vmbr0) y 192.168.56.20 (vmbr1) | Hipervisor | Máquina Virtual |
-| Servidor ASO | srv-aso | 192.168.56.30/24 | Servidor principal | Máquina Virtual/Contendor |
+| Servidor ASO | srv-aso | 192.168.56.30/24 | Servidor principal | Máquina Virtual/Contenedor |
 | Cliente | cli-linux | 192.168.56.40/24 | Pruebas | Máquina Virtual/Contenedor |
 
 ## Evidencias
-
-## Conclusion
 
 [Volver al indice](../README.md)
