@@ -3,6 +3,10 @@
 ## Objetivo
 El objetivo es diseñar la red del laboratorio Proxmox antes de empezar a realizar la instalación de servicios.
 
+## Diseño de red
+Nombre del nodo Proxmox: pve-peña
+Interfaz de gestión: 192.168.56.20/24 (vmbr1)
+
 ## Tabla
 | Elemento | Nombre | IP | Función | Recursos |
 |---|---|---|---|---|
