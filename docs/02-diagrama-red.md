@@ -31,4 +31,16 @@ Puertos necesarios: 8006, puerto de proxmox
 
 ## Evidencias
 
+### Diagrama de red
+
+```mermaid
+flowchart TD
+    I["Internet o red del centro"] --> V0["vmbr0 · 10.0.2.20/24<br/>bridge exterior"]
+    V0 --> P["pve-peña · Nodo Proxmox<br/>Gateway de los invitados"]
+    P --> V1["vmbr1 · 192.168.56.20/24<br/>bridge del laboratorio"]
+    A["Anfitrión · 192.168.56.1<br/>Panel web :8006"] --> V1
+    V1 --> C["cli-linux · 192.168.56.40/24<br/>Cliente pruebas"]
+    V1 --> S["srv-aso · 192.168.56.30/24<br/>Servidor ASO"]
+    C -.->|"Pruebas autorizadas"| S
+```
 [Volver al indice](../README.md)
