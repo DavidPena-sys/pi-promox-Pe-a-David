@@ -10,6 +10,9 @@
 
 ```
 ## Tabla
+| Elemento | Nombre | IP | Función | Recursos |
+|---|---|---|---|---|
+|  |  |  |  |  |
 
 
 
