@@ -8,6 +8,8 @@ Nombre del nodo Proxmox: pve-peña
 
 Interfaz de gestión: 192.168.56.20/24 (vmbr1)
 
+Bridge de Proxmox: vmbr0, es el bridge exterior que saldría hacía fuera y vmbr1, es el bridge del laboratorio 
+
 ## Tabla
 | Elemento | Nombre | IP | Función | Recursos |
 |---|---|---|---|---|
