@@ -1,6 +1,7 @@
 # 02-diagrama-red
 
 ## Objetivo
+El objetivo es diseñar la red del laboratorio Proxmox antes de empezar a realizar la instalación de servicios.
 
 ## Procedimiento
 
