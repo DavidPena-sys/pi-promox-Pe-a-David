@@ -74,7 +74,6 @@ Comprobaciones dentro de Proxmox: el hostname, las IPs de `vmbr0` y `vmbr1`, la 
 Panel web de Proxmox abierto desde el navegador de mi portátil.
 
 ## Incidencias
-- **La máquina no arrancaba por un error de red** (`VERR_INTNET_FLT_IF_NOT_FOUND`). Tenía dos redes solo-anfitrión y la máquina estaba en la que no era (192.168.208.x). Borré la que sobraba, puse la buena con la IP `192.168.56.1` y la volví a seleccionar en la máquina.
 - **Aviso de que no hay KVM.** Es porque Windows 11 tiene activada la "integridad de memoria" y no deja usar la virtualización anidada. No la he quitado para no bajar la seguridad del portátil, así que `srv-aso` y `cli-linux` los haré como contenedores LXC, que no necesitan KVM.
 - **El hostname no acepta la ñ**, así que el nodo se llama `pve-pena`.
 - **La actualización da error.** Me falta configurar el repositorio que diga el profesor. Está pendiente.
