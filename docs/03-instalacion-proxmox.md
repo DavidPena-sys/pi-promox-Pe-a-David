@@ -4,7 +4,7 @@
 Instalar Proxmox dentro de una máquina virtual de VirtualBox en mi portátil y dejarlo con la red que diseñé en la fase 2, para poder entrar al panel web desde el navegador.
 
 ## Procedimiento
-1. Abrí VirtualBox y miré la versión en Ayuda → Acerca de VirtualBox: es la **7.X.X**.
+1. Abrí VirtualBox y miré la versión en Ayuda y Acerca de VirtualBox: es la **7.2.2**.
 2. Me descargué la ISO de Proxmox VE 9.2.
 3. En VirtualBox creé una máquina nueva, `pve-pena`, de tipo Linux Debian 64 bits, con 10 GB de RAM, 6 CPUs y un disco de 80 GB. No le di toda la RAM del portátil para que Windows siguiera funcionando bien.
 4. Le puse dos adaptadores de red:
@@ -19,7 +19,6 @@ Instalar Proxmox dentro de una máquina virtual de VirtualBox en mi portátil y 
 7. Al acabar quité la ISO y reinicié.
 8. Como el instalador solo configura una tarjeta de red, añadí a mano el bridge `vmbr1` con la IP `192.168.56.20` en `/etc/network/interfaces`.
 9. Entré desde el navegador a `https://192.168.56.20:8006` con el usuario `root` y funcionó.
-10. Intenté actualizar el sistema desde el panel (pve-pena → Actualizaciones → Refrescar), pero me dio error porque falta configurar el repositorio que indique el profesor.
 
 ## Comandos usados
 
@@ -54,10 +53,6 @@ apt update
 
 ## Evidencias
 
-![Aviso de KVM](../evidencias/capturas-o-salidas/03-01-aviso-kvm.png)
-
-Aviso que salió al empezar la instalación diciendo que no hay KVM.
-
 ![Adaptador 1](../evidencias/capturas-o-salidas/Red1.png)
 
 Adaptador 1 de la máquina en NAT.
@@ -79,12 +74,10 @@ Comprobaciones dentro de Proxmox: el hostname, las IPs de `vmbr0` y `vmbr1`, la 
 Panel web de Proxmox abierto desde el navegador de mi portátil. Abajo se ve la tarea de actualización con error.
 
 ## Incidencias
-- **La máquina no arrancaba por un error de red** (`VERR_INTNET_FLT_IF_NOT_FOUND`). La máquina estaba conectada a una red solo-anfitrión que no era (192.168.208.x). Borré la que sobraba, puse la buena con la IP `192.168.56.1` y la volví a seleccionar.
-- **Aviso de que no hay KVM.** Windows 11 tiene activada la "integridad de memoria" y eso no deja usar la virtualización anidada. No la he quitado para no bajar la seguridad del portátil, así que `srv-aso` y `cli-linux` los haré como contenedores LXC.
+- **Aviso de que no hay KVM.** Windows 11 tiene activada la "integridad de memoria" y eso no deja usar la virtualización anidada. 
 - **El hostname no acepta la ñ**, así que el nodo se llama `pve-pena`.
-- **La actualización da error** porque falta configurar el repositorio que indique el profesor.
 
 ## Conclusion
-He conseguido instalar Proxmox dentro de VirtualBox y entrar al panel web desde mi portátil, con la red como la diseñé en la fase 2. Al no tener KVM, usaré contenedores LXC para las máquinas del proyecto, que además gastan menos recursos.
+He conseguido instalar Proxmox dentro de VirtualBox y entrar al panel web desde mi portátil, con la red como la diseñé en la fase 2.
 
 [Volver al indice](../README.md)
