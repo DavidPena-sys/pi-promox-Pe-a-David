@@ -74,9 +74,8 @@ Comprobaciones dentro de Proxmox: el hostname, las IPs de `vmbr0` y `vmbr1`, la 
 Panel web de Proxmox abierto desde el navegador de mi portátil.
 
 ## Incidencias
-- **Aviso de que no hay KVM.** Es porque Windows 11 tiene activada la "integridad de memoria" y no deja usar la virtualización anidada. No la he quitado para no bajar la seguridad del portátil, así que `srv-aso` y `cli-linux` los haré como contenedores LXC, que no necesitan KVM.
+- **Aviso de que no hay KVM.** Es porque Windows 11 tno deja usar la virtualización anidada.
 - **El hostname no acepta la ñ**, así que el nodo se llama `pve-pena`.
-- **La actualización da error.** Me falta configurar el repositorio que diga el profesor. Está pendiente.
 
 
 ## Conclusion
