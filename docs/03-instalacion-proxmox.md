@@ -49,29 +49,6 @@ df -h
 ```
 
 ## Evidencias
-![Aviso de KVM](<C:\Users\david\Desktop\clase\GRADO SUPERIOR\2º\PI\fase3\evidencias\03\03-01-aviso-kvm.png>)
-
-Aviso que salió al empezar la instalación diciendo que no hay KVM.
-
-![Adaptador 1](<C:\Users\david\Desktop\clase\GRADO SUPERIOR\2º\PI\Red1.png>)
-
-Adaptador 1 de la máquina en NAT.
-
-![Adaptador 2](<C:\Users\david\Desktop\clase\GRADO SUPERIOR\2º\PI\Red2.png>)
-
-Adaptador 2 en solo-anfitrión, con el modo promiscuo en "Permitir todo".
-
-![Almacenamiento](<C:\Users\david\Desktop\clase\GRADO SUPERIOR\2º\PI\Almacenamiento.png>)
-
-Disco virtual de la máquina, donde está instalado Proxmox.
-
-![Comprobaciones](<C:\Users\david\Desktop\clase\GRADO SUPERIOR\2º\PI\Captura1.png>)
-
-Comprobaciones dentro de Proxmox: el hostname, las IPs de `vmbr0` y `vmbr1`, la versión (9.2.2) y el disco.
-
-![Panel web](<C:\Users\david\Desktop\clase\GRADO SUPERIOR\2º\PI\Captura2.png>)
-
-Panel web de Proxmox abierto desde el navegador de mi portátil.
 
 ## Incidencias
 - **Aviso de que no hay KVM.** Es porque Windows 11 tno deja usar la virtualización anidada.
