@@ -28,6 +28,18 @@ Anadir una entrada con esta estructura en cada sesion. El historial de
 GitHub registra los commits; no hace falta incluir el hash del propio
 commit dentro de su entrada de bitacora.
 
+## Sesion 03 - 10/11/2026
+
+- Objetivo: Fase 3, instalar Proxmox VE dentro de una máquina virtual de VirtualBox y dejarlo con la red diseñada en la fase 2, con acceso al panel web desde el navegador.
+- Acciones realizadas: He creado la máquina `pve-pena` en VirtualBox 7.2.4 con dos adaptadores: NAT para Internet y solo-anfitrión (192.168.56.0/24) con el modo promiscuo en "Permitir todo". He activado la virtualización anidada con VBoxManage, he instalado Proxmox VE 9.2 desde la ISO y después he añadido a mano el bridge `vmbr1` en `/etc/network/interfaces`. He rellenado el documento `03-instalacion-proxmox.md`.
+- Decisiones y motivos: hostname `pve-pena.lab`. En el instalador, la IP `10.0.2.20/24` con gateway `10.0.2.2` (la red NAT de VirtualBox) para que el nodo tenga salida a Internet por `vmbr0`. El bridge `vmbr1` en `192.168.56.20/24` sobre la segunda tarjeta para entrar al panel desde el equipo anfitrión, tal como se diseñó en la fase 2. DNS 8.8.8.8. He activado la virtualización anidada para poder crear después las máquinas `srv-aso` y `cli-linux` dentro de Proxmox.
+- Pruebas y resultados: he comprobado con `hostnamectl`, `ip -br addr`, `pveversion` y `df -h` que el hostname, las IPs de `vmbr0` y `vmbr1`, y el disco es correcto. He entrado al panel web en `https://192.168.56.20:8006` con el usuario `root` y funciona.
+- Documentos o evidencias: [Instalación de Proxmox](03-instalacion-proxmox.md) y las capturas de `evidencias/capturas-o-salidas/` (1 a 5).
+- Incidencias y solucion o estado pendiente:
+  - Primero intenté hacer la instalación en mi equipo con Windows, pero VirtualBox no me dejó arrancar bien la máquina con la virtualización anidada, por un conflicto con la virtualización de Windows (Hyper-V). Para no perder más tiempo, la reinstalé desde cero en el equipo de clase, donde sí ha funcionado. Solucionado.
+  - El hostname no acepta la ñ, así que el nodo se llama `pve-pena` en vez de `pve-peña`. Solucionado.
+- Siguiente paso: arreglar los repositorios para que funcione la actualización y empezar a crear las máquinas `srv-aso` y `cli-linux` en `vmbr1`.
+
 [Volver al indice](../README.md)
 
 
