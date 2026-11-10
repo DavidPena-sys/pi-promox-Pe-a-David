@@ -46,23 +46,23 @@ df -h
 
 ## Evidencias
 
-![Adaptador 1](../evidencias/capturas-o-salidas/Red1.png)
+![Adaptador 1](../evidencias/capturas-o-salidas/1.png)
 
 Adaptador 1 de la máquina en NAT.
 
-![Adaptador 2](../evidencias/capturas-o-salidas/Red2.png)
+![Adaptador 2](../evidencias/capturas-o-salidas/2.png)
 
 Adaptador 2 en solo-anfitrión, con el modo promiscuo en "Permitir todo".
 
-![Almacenamiento](../evidencias/capturas-o-salidas/Almacenamiento.png)
+![Almacenamiento](../evidencias/capturas-o-salidas/3.png)
 
 Disco virtual de la máquina, donde está instalado Proxmox.
 
-![Comprobaciones](../evidencias/capturas-o-salidas/Captura1.png)
+![Comprobaciones](../evidencias/capturas-o-salidas/4.png)
 
 Comprobaciones dentro de Proxmox: el hostname, las IPs de `vmbr0` y `vmbr1`, la versión (9.2.4) y el disco.
 
-![Panel web](../evidencias/capturas-o-salidas/Captura2.png)
+![Panel web](../evidencias/capturas-o-salidas/5.png)
 
 Panel web de Proxmox abierto desde el navegador de mi equipo. Abajo se ve la tarea de actualización con error.
 
