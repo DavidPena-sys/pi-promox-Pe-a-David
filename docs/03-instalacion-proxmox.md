@@ -135,4 +135,48 @@ Creación del almacenamiento `backups` y comprobación de que aparece activo.
 
 Tamaño actual del VDI y espacio libre en el disco del anfitrión.
 
+### 2. Red
+
+Revisé la red en pve-pena > System > Network y desde la consola del nodo.
+
+| Interfaz | Tipo | Puerto | IP | Gateway | Adaptador de VirtualBox | Función |
+|---|---|---|---|---|---|---|
+| `nic0` | Tarjeta de red | — | — | — | Adaptador 1 (NAT) | Puerto de `vmbr0` |
+| `nic1` | Tarjeta de red | — | — | — | Adaptador 2 (solo-anfitrión) | Puerto de `vmbr1` |
+| `vmbr0` | Bridge | `nic0` | 10.0.2.20/24 | 10.0.2.2 | NAT | Salida a Internet |
+| `vmbr1` | Bridge | `nic1` | 192.168.56.20/24 | — | Solo-anfitrión | Gestión y red del laboratorio |
+
+Cada interfaz se relaciona con su adaptador de VirtualBox por la MAC: `nic0` es `enx08002748564f` (Adaptador 1, MAC `08:00:27:48:56:4F`) y `nic1` es `enx08002741668f` (Adaptador 2, MAC `08:00:27:41:66:8F`).
+
+La IP, la máscara y el gateway coinciden con el diseño de la fase 2. La dirección de gestión es 192.168.56.20, `vmbr1`, desde donde entro al panel en `https://192.168.56.20:8006`. Solo hay una ruta por defecto, por `vmbr0` hacia 10.0.2.2, así que todo lo que va a Internet sale por el NAT. `vmbr1` no lleva gateway porque es la red interna del laboratorio.
+
+```bash
+# Interfaces y rutas
+ip -br addr
+ip route
+
+# DNS y acceso al repositorio
+cat /etc/resolv.conf
+getent hosts google.com
+apt update
+```
+
+En `ip -br addr`, `vmbr0` y `vmbr1` están UP con sus IPs. `nic0` y `nic1` no tienen IP porque son los puertos de los bridges, y salen como UNKNOWN porque la tarjeta virtual de VirtualBox no informa del estado del enlace.
+
+Resolución de nombres: el DNS es 8.8.8.8 y funciona, porque `getent hosts google.com` devuelve su IP. El `ping` no responde, pero es una limitación de la red del instituto, no falta de conexión porque `apt update` sí descarga.
+
+Repositorio de paquetes: `apt update` descarga sin problemas los repositorios de Debian (`deb.debian.org` y `security.debian.org`). Los repositorios enterprise de Proxmox (`pve` y `ceph-squid`) dan `401 Unauthorized` porque necesitan suscripción, por eso aparece el error de actualización en el panel. No los he desactivado porque no se ha indicado en clase, pero se podría.
+
+![Red en el panel](../evidencias/capturas-o-salidas/13.png)
+
+Red del nodo en System > Network: `nic0` y `nic1` con sus MAC y los bridges `vmbr0` (10.0.2.20/24, gateway 10.0.2.2) y `vmbr1` (192.168.56.20/24).
+
+![ip -br addr e ip route](../evidencias/capturas-o-salidas/14.png)
+
+Salida de `ip -br addr` e `ip route`: los dos bridges UP y la ruta por defecto por `vmbr0`.
+
+![DNS y repositorio](../evidencias/capturas-o-salidas/15.png)
+
+DNS configurado, resolución de nombres correcta, ping bloqueado por la red y `apt update` con los repositorios de Debian funcionando y los enterprise con error 401.
+
 [Volver al indice](../README.md)
