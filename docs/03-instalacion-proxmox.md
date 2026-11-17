@@ -167,16 +167,16 @@ Resolución de nombres: el DNS es 8.8.8.8 y funciona, porque `getent hosts googl
 
 Repositorio de paquetes: `apt update` descarga sin problemas los repositorios de Debian (`deb.debian.org` y `security.debian.org`). Los repositorios enterprise de Proxmox (`pve` y `ceph-squid`) dan `401 Unauthorized` porque necesitan suscripción, por eso aparece el error de actualización en el panel. No los he desactivado porque no se ha indicado en clase, pero se podría.
 
-![Red en el panel](../evidencias/capturas-o-salidas/13.png)
+![Red en el panel](../evidencias/capturas-o-salidas/14.png)
 
-Red del nodo en System > Network: `nic0` y `nic1` con sus MAC y los bridges `vmbr0` (10.0.2.20/24, gateway 10.0.2.2) y `vmbr1` (192.168.56.20/24).
+Red del nodo en *System > Network*: `nic0` y `nic1` con sus MAC y los bridges `vmbr0` (10.0.2.20/24, gateway 10.0.2.2) y `vmbr1` (192.168.56.20/24).
 
-![ip -br addr e ip route](../evidencias/capturas-o-salidas/14.png)
+![ip -br addr e ip route](../evidencias/capturas-o-salidas/15.png)
 
 Salida de `ip -br addr` e `ip route`: los dos bridges UP y la ruta por defecto por `vmbr0`.
 
-![DNS y repositorio](../evidencias/capturas-o-salidas/15.png)
+![DNS y repositorio](../evidencias/capturas-o-salidas/16.png)
 
-DNS configurado, resolución de nombres correcta, ping bloqueado por la red y `apt update` con los repositorios de Debian funcionando y los enterprise con error 401.
+DNS configurado, resolución de nombres correcta, ping bloqueado por el NAT y `apt update` con los repositorios de Debian funcionando y los enterprise con error 401.
 
 [Volver al indice](../README.md)
