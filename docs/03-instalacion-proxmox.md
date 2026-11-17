@@ -91,7 +91,7 @@ Revisé los almacenamientos en Datacenter > Storage y desde la consola del nodo.
 |---|---|---|---|---|---|---|
 | `local` | Directorio | `/var/lib/vz` | Backup, Import, ISO image, Container template | 29 GiB | 24 GiB | ISO de instalación y plantillas |
 | `local-lvm` | LVM-Thin | (volumen LVM) | Disk image, Container | 30 GiB | 30 GiB | Discos de `srv-aso` y `cli-linux` |
-| `backups` | Directorio | `/srv/backups` | Backup | 29 GiB | 24 GiB | Copias de seguridad (fase 9) |
+| `backups` | Directorio | `/srv/backups` | Backup | 29 GiB | 24 GiB | Copias de seguridad |
 
 `local-lvm` es el almacenamiento para los discos de las máquinas y no admite ni ISO ni copias, para eso están `local` y `backups`.
 
