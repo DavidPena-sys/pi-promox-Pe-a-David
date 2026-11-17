@@ -93,7 +93,7 @@ Revisé los almacenamientos en Datacenter > Storage y desde la consola del nodo.
 | `local-lvm` | LVM-Thin | (volumen LVM) | Disk image, Container | 30 GiB | 30 GiB | Discos de `srv-aso` y `cli-linux` |
 | `backups` | Directorio | `/srv/backups` | Backup | 29 GiB | 24 GiB | Copias de seguridad (fase 9) |
 
-`local-lvm` es el almacenamiento para los discos de las máquinas y no admite ni ISO ni copias; para eso están `local` y `backups`. Ninguno es compartido, porque son discos locales del nodo.
+`local-lvm` es el almacenamiento para los discos de las máquinas y no admite ni ISO ni copias, para eso están `local` y `backups`.
 
 ```bash
 # Ver los almacenamientos y su espacio
@@ -106,7 +106,7 @@ pvesm add dir backups --path /srv/backups --content backup
 pvesm status
 ```
 
-En `df -h`, `local` y `backups` aparecen dentro de `/dev/mapper/pve-root` (30G, 24G libres), porque los dos son carpetas de `/`. Por eso `pvesm status` les da el mismo espacio. `local-lvm` no sale en `df` porque es un volumen que no se monta: los discos de las máquinas se crean como volúmenes dentro de él. El disco de la VM es de 80 GB, pero entre `local` y `local-lvm` suman unos 60 GB, el resto es swap, metadatos de LVM y espacio libre que reserva el instalador.
+En `df -h`, `local` y `backups` aparecen dentro de `/dev/mapper/pve-root`, porque los dos son carpetas de `/`. Por eso `pvesm status` les da el mismo espacio. `local-lvm` no sale en `df` porque es un volumen que no se monta: los discos de las máquinas se crean como volúmenes dentro de él. El disco de la VM es de 80 GB, pero entre `local` y `local-lvm` suman unos 60 GB, el resto es swap, metadatos de LVM y espacio libre que reserva el instalador.
 
 **Espacio del anfitrión:**
 
@@ -115,13 +115,13 @@ ls -lh ~/"VirtualBox VMs"/pve-pena/
 df -h ~/"VirtualBox VMs"
 ```
 
-El disco `pve-pena.vdi` es dinámico: ahora ocupa 4,2 GB y puede crecer hasta 80 GB. En el disco real del anfitrión (`/dev/sda6`) quedan 138 GB libres, así que hay espacio de sobra para que crezca.
+El disco `pve-pena.vdi` es dinámico: ahora ocupa 4,2 GB y puede crecer hasta 80 GB. En el disco real del anfitrión quedan 138 GB libres, así que hay espacio de sobra para que crezca.
 
 Advertencia: Las copias de `backups` se guardan en el mismo VDI y en el mismo disco físico que el laboratorio. Si ese disco falla, se perderían a la vez las máquinas y sus copias. En un entorno real las copias deberían ir a otro disco o a otro equipo.
 
 ![Almacenamientos en el panel](../evidencias/capturas-o-salidas/9.png)
 
-Almacenamientos del nodo en *Datacenter > Storage*: `backups`, `local` y `local-lvm`, con el contenido que admite cada uno.
+Almacenamientos del nodo en Datacenter > Storage: `backups`, `local` y `local-lvm`, con el contenido que admite cada uno.
 
 ![pvesm status y df -h](../evidencias/capturas-o-salidas/10.png)
 
