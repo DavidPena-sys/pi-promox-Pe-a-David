@@ -71,6 +71,10 @@ Comprobaciones dentro de Proxmox: el hostname, las IPs de `vmbr0` y `vmbr1`, la 
 
 Panel web de Proxmox abierto desde el navegador de mi equipo. Abajo se ve la tarea de actualización con error.
 
+![KVM](../evidencias/capturas-o-salidas/6.png)
+
+Comprobación de KVM dentro de Proxmox: la CPU virtual tiene las extensiones vmx (6 = 3 vCPUs × 2 líneas), existe /dev/kvm y los módulos kvm y kvm_intel están cargados. La virtualización anidada funciona, así que srv-aso y cli-linux se podrán crear como máquinas KVM.
+
 ## Incidencias
 - **El hostname no acepta la ñ**, así que el nodo se llama `pve-pena`.
 
