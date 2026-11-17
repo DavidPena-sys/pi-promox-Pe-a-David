@@ -42,6 +42,11 @@ hostnamectl
 ip -br addr
 pveversion
 df -h
+
+# Comprobar que KVM está disponible dentro de Proxmox
+egrep -c '(vmx|svm)' /proc/cpuinfo
+ls -l /dev/kvm
+lsmod | egrep kvm
 ```
 
 ## Evidencias
