@@ -211,4 +211,46 @@ Usuarios del nodo en *Datacenter > Permissions > Users*: solo `root@pam`, activo
 
 Salida de `pveum user list` (solo `root@pam`), `pveum acl list`, sin reglas, porque `root` tiene todos los permisos y `pve-firewall status`, firewall desactivado.
 
+### 4. Reparto de recursos
+
+Partí del presupuesto del inventario y lo ajusté con lo que he medido tras instalar.
+
+```bash
+# En el anfitrión, pc de clase
+nproc
+free -h
+
+# En el nodo Proxmox
+nproc
+free -h
+```
+
+Datos medidos:
+- Anfitrión (CLASE): 8 hilos y 15 GiB de RAM. Le doy a la VM `pve-pena` 3 vCPU y 8 GB, así que quedan 5 hilos y unos 7 GB para LliureX y VirtualBox.
+- Nodo `pve-pena`: 3 vCPU y 7,8 GiB de RAM. Sin ninguna máquina encendida, Proxmox gasta 1,5 GiB.
+- Almacenamiento: `local-lvm` tiene unos 30 GiB para discos de máquinas, y `local`/`backups` unos 24 GiB libres.
+
+| Elemento | CPU/vCPU | RAM | Disco o almacenamiento | Motivo del reparto |
+|---|---|---|---|---|
+| Nodo Proxmox | 3 vCPU (compartidas con las máquinas) | 2 GB reservados | Sistema en `local`  | Proxmox gasta 1,5 GiB sin máquinas, con 2 GB el panel y la consola siguen respondiendo con servidor y cliente encendidos |
+| srv-aso | 2 vCPU | 2 GB | 10 GB en `local-lvm` | Es el servidor del servicio ASO y el que más carga tendrá; mantengo lo del inventario |
+| cli-linux | 1 vCPU | 2 GB | 8 GB en `local-lvm` | Solo hace de cliente para probar el servicio, le bajo a 1 vCPU respecto al inventario para no repartir más CPU de la necesaria |
+| Plantillas, ISO, copias y margen | — | 1,8 GB libres | Plantilla 8 GB en `local-lvm`, ISO en `local`, copias en `backups` | Margen para realizar las siguientes fases |
+| Anfitrión (CLASE) | 5 hilos | ~7 GB | 138 GB libres en el disco real | Que LliureX y VirtualBox no se queden sin recursos |
+
+Comprobación de que cabe:
+- RAM del nodo: 2 + 2 + 2 = 6 GB de 7,8 GiB, y queda 1,8 GB de margen.
+- Disco en `local-lvm`: 10 + 8 + 8 = 26 GB de 30 GiB, y quedan unos 4 GB. Como es LVM-Thin, los discos solo ocupan lo que se usa de verdad, así que el margen real será mayor.
+- vCPU: 2 + 1 = 3, las mismas que tiene el nodo. Las vCPU se comparten, así que el nodo puede seguir funcionando aunque las dos máquinas trabajen a la vez.
+
+No consumo todos los recursos: el objetivo es poder administrar el nodo mientras `srv-aso` y `cli-linux` funcionan.
+
+![Recursos del anfitrión](../evidencias/capturas-o-salidas/19.png)
+
+Hilos y RAM del anfitrión PC787 (`nproc` y `free -h`).
+
+![Recursos del nodo](../evidencias/capturas-o-salidas/20.png)
+
+vCPU y RAM del nodo Proxmox sin máquinas encendidas: 3 vCPU y 1,5 GiB usados de 7,8 GiB.
+
 [Volver al indice](../README.md)
