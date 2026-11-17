@@ -247,7 +247,7 @@ No consumo todos los recursos: el objetivo es poder administrar el nodo mientras
 
 ![Recursos del anfitrión](../evidencias/capturas-o-salidas/19.png)
 
-Hilos y RAM del anfitrión PC787 (`nproc` y `free -h`).
+Hilos y RAM del anfitrión PC Clase (`nproc` y `free -h`).
 
 ![Recursos del nodo](../evidencias/capturas-o-salidas/20.png)
 
