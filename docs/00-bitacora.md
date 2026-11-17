@@ -40,6 +40,19 @@ commit dentro de su entrada de bitacora.
   - El hostname no acepta la ñ, así que el nodo se llama `pve-pena` en vez de `pve-peña`. Solucionado.
 - Siguiente paso: arreglar los repositorios para que funcione la actualización y empezar a crear las máquinas `srv-aso` y `cli-linux` en `vmbr1`.
 
+## Sesion 04 - 17/11/2026
+
+- Objetivo: Fase 4, revisar la configuración base del nodo para tener una base estable antes de crear las máquinas.
+- Acciones realizadas, he comprobado la virtualización anidada dentro de Proxmox para cerrar la fase 3. He revisado los almacenamientos en el panel y con `pvesm status` y `df -h`, y he creado el almacenamiento `backups` en `/srv/backups`. He revisado la red en System > Network y con `ip -br addr` e `ip route`, y he comprobado el DNS y el acceso al repositorio con `getent hosts` y `apt update`. He revisado las cuentas y el firewall con `pveum user list`, `pveum acl list` y `pve-firewall status`. He medido los recursos del anfitrión y del nodo con `nproc` y `free -h`, y he hecho la tabla de reparto. Todo está documentado en `03-instalacion-proxmox.md`, en la sección de la fase 4.
+- Decisiones y motivos, almacenamiento `backups` solo para copias, para tenerlas separadas de las ISO y las plantillas de `local`. Los discos de las máquinas van en `local-lvm`, que es el único que admite discos de VM. Solo uso la cuenta `root@pam`, porque no hay otro usuario creado. El firewall se queda desactivado porque no se pide lo contrario. Reparto de recursos, 2 GB de RAM reservados para el nodo, `srv-aso` con 2 vCPU, 2 GB y 10 GB de disco, `cli-linux` con 1 vCPU, 2 GB y 8 GB de disco, y 8 GB para la plantilla. Al anfitrión le quedan 5 hilos y unos 7 GB de RAM.
+- Pruebas y resultados, KVM funciona dentro del nodo. Los tres almacenamientos están activos. Los bridges `vmbr0` y `vmbr1` están UP con las IPs del diseño y la ruta por defecto sale por `vmbr0`. El DNS resuelve nombres y `apt update` descarga de los repositorios de Debian. En el anfitrión hay 138 GB libres, suficientes para que crezca el VDI.
+- Documentos o evidencias: [Instalación y configuración base de Proxmox](03-instalacion-proxmox.md) y las capturas de `evidencias/capturas-o-salidas/`.
+- Incidencias y solucion o estado pendiente:
+  - El `ping` no responde desde el nodo por la limitación del la red del instituto. Comprobé la conexión con `getent hosts` y `apt update`. Solucionado.
+  - Los repositorios enterprise de Proxmox dan `401 Unauthorized` porque necesitan suscripción. No los he desactivado porque no se ha indicado en clase.
+  - Las copias de seguridad están en el mismo disco que el laboratorio, así que un fallo de ese disco afectaría a las dos cosas. Queda anotado como riesgo.
+- Siguiente paso: Fase 5, crear la plantilla Linux y probar el clonado.
+
 [Volver al indice](../README.md)
 
 
