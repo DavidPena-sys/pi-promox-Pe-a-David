@@ -179,4 +179,36 @@ Salida de `ip -br addr` e `ip route`: los dos bridges UP y la ruta por defecto p
 
 DNS configurado, resolución de nombres correcta, ping bloqueado por el NAT y `apt update` con los repositorios de Debian funcionando y los enterprise con error 401.
 
+### 3. Accesos administrativos
+
+Revisé las cuentas en *Datacenter > Permissions > Users* y desde la consola del nodo.
+
+| Cuenta | Realm | Estado | Permisos | Uso |
+|---|---|---|---|---|
+| `root@pam` | `pam` (usuario Linux del nodo) | Activa, sin caducidad, sin TFA | Todos (superusuario) | Administrar el nodo desde el panel web y la consola |
+
+`root@pam` es la única cuenta del nodo. Es el usuario `root` del Debian sobre el que está Proxmox, y su contraseña es la que puse en el instalador. Tiene todos los permisos sobre el nodo, las máquinas, el almacenamiento, la red y los usuarios, sin necesitar ninguna regla: por eso `pveum acl list` sale vacío. En clase no se ha pedido crear ningún usuario ni rol, así que no he añadido ninguno.
+
+```bash
+pveum user list
+pveum acl list
+pve-firewall status
+```
+
+Firewall: `pve-firewall status` devuelve `disabled/running`, el servicio está en marcha pero el firewall no está activado, así que no filtra nada.
+
+Aislamiento del laboratorio:
+- El panel (`https://192.168.56.20:8006`) solo es accesible desde el equipo anfitrión, porque `vmbr1` está en una red solo-anfitrión de VirtualBox que no sale a la red del aula.
+- La salida a Internet es por NAT (`vmbr0`), el nodo puede salir, pero desde la red del aula no se puede entrar porque no hay reenvío de puertos.
+- `srv-aso` y `cli-linux` irán en `vmbr1`, aislados de la red del centro.
+- Las contraseñas no aparecen en las capturas ni en el repositorio.
+
+![Usuarios](../evidencias/capturas-o-salidas/17.png)
+
+Usuarios del nodo en *Datacenter > Permissions > Users*: solo `root@pam`, activo y sin caducidad.
+
+![Cuentas, permisos y firewall](../evidencias/capturas-o-salidas/18.png)
+
+Salida de `pveum user list` (solo `root@pam`), `pveum acl list`, sin reglas, porque `root` tiene todos los permisos y `pve-firewall status`, firewall desactivado.
+
 [Volver al indice](../README.md)
