@@ -263,10 +263,10 @@ apt update
 
 ![Repositorios](../evidencias/capturas-o-salidas/21.png)
 
-Repositorios del nodo: los enterprise desactivados y `pve-no-subscription` activado. El aviso amarillo solo indica que no se recomienda para producción.
+Repositorios del nodo, los enterprise desactivados y `pve-no-subscription` activado. El aviso amarillo solo indica que no se recomienda para producción.
 
 ![apt update sin errores](../evidencias/capturas-o-salidas/22.png)
 
-`apt update` sin errores: descarga de Debian y de `download.proxmox.com` (`pve-no-subscription`).
+`apt update` sin errores, descarga de Debian y de `download.proxmox.com`.
 
 [Volver al indice](../README.md)
