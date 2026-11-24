@@ -75,7 +75,7 @@ Se instaló Proxmox VE 9.2 en una VM de 3 vCPU, 8 GB de RAM y 80 GB de disco, y 
 - Instalación en VirtualBox en vez de física, porque no hay equipos para toda la clase. En el portátil con Windows la virtualización anidada no funcionaba por Hyper-V, así que se montó en el equipo de clase.
 - El nodo se llama `pve-pena` porque el hostname no admite la ñ.
 - El `ping` no sale del nodo por la limitación del NAT de VirtualBox con ICMP, la conexión se comprueba con `getent hosts` y `apt update`.
-- Los repositorios enterprise de Proxmox dan error 401 porque necesitan suscripción. Se desactivaron y se añadio `pve-no-subscription`, y ahora `apt-update` termina sin ningún error.
+- Los repositorios enterprise de Proxmox dan error 401 porque necesitan suscripción. Se desactivaron y se añadio `pve-no-subscription`, y ahora `apt update` termina sin ningún error.
 - Las copias están en el mismo disco que el laboratorio, queda anotado como riesgo.
 
 [Bitacora](00-bitacora.md)
