@@ -20,8 +20,9 @@ Necesidad que atiende el laboratorio, en un aula no se pueden instalar servicios
 
 ## Alcance y criterios de aceptacion
 
-Incluye por el momento, un nodo Proxmox virtualizado, una plantilla Linux y dos máquinas (`srv-aso` y `cli-linux`) en la red `vmbr1`.
+Incluye por el momento, un nodo Proxmox virtualizado, una plantilla Linux, dos máquinas (`srv-aso` y `cli-linux`) en la red `vmbr1`, un servicio ASO y sus copias de seguridad.
 
+Queda fuera, montar un cluster de varios nodos, la alta disponibilidad y el acceso desde fuera del aula.
 
 | Resultado | Prueba para darlo por aceptado |
 |---|---|
