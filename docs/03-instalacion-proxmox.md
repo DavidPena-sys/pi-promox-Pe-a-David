@@ -165,7 +165,7 @@ En `ip -br addr`, `vmbr0` y `vmbr1` están UP con sus IPs. `nic0` y `nic1` no ti
 
 Resolución de nombres: el DNS es 8.8.8.8 y funciona, porque `getent hosts google.com` devuelve su IP. El `ping` no responde, pero es una limitación de la red del instituto, no falta de conexión porque `apt update` sí descarga.
 
-Repositorio de paquetes: `apt update` descarga sin problemas los repositorios de Debian (`deb.debian.org` y `security.debian.org`). Los repositorios enterprise de Proxmox (`pve` y `ceph-squid`) dan `401 Unauthorized` porque necesitan suscripción, por eso aparece el error de actualización en el panel. No los he desactivado porque no se ha indicado en clase, pero se podría.
+Repositorio de paquetes: `apt update` descarga sin problemas los repositorios de Debian (`deb.debian.org` y `security.debian.org`). Los repositorios enterprise de Proxmox (`pve` y `ceph-squid`) dan `401 Unauthorized` porque necesitan suscripción, por eso aparece el error de actualización en el panel. Se corrigió en el punto 5.
 
 ![Red en el panel](../evidencias/capturas-o-salidas/14.png)
 
@@ -252,5 +252,21 @@ Hilos y RAM del anfitrión PC Clase (`nproc` y `free -h`).
 ![Recursos del nodo](../evidencias/capturas-o-salidas/20.png)
 
 vCPU y RAM del nodo Proxmox sin máquinas encendidas: 3 vCPU y 1,5 GiB usados de 7,8 GiB.
+
+### 5. Repositorios
+
+Los repositorios enterprise de Proxmox (`pve-enterprise` y `ceph-squid`) daban `401 Unauthorized` porque necesitan suscripción. Siguiendo la indicación del profesor, los desactivé en pve-pena > Actualizaciones > Repositorios y añadí el repositorio `pve-no-subscription`. Ahora `apt update` descarga todo sin errores, incluido `download.proxmox.com`.
+
+```bash
+apt update
+```
+
+![Repositorios](../evidencias/capturas-o-salidas/21.png)
+
+Repositorios del nodo: los enterprise desactivados y `pve-no-subscription` activado. El aviso amarillo solo indica que no se recomienda para producción.
+
+![apt update sin errores](../evidencias/capturas-o-salidas/22.png)
+
+`apt update` sin errores: descarga de Debian y de `download.proxmox.com` (`pve-no-subscription`).
 
 [Volver al indice](../README.md)
