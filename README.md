@@ -1,16 +1,16 @@
 # Proyecto Intermodular: nodo Proxmox individual
 
-Alumno/a: peña_david
+Alumno/a: David Peña Coves
 
 URL GitHub: https://github.com/DavidPena-sys/pi-promox-Pe-a-David
 
 ## Objetivo
 
-PENDIENTE: explicar la necesidad que resolvera el laboratorio.
+Montar un laboratorio de virtualización con Proxmox para practicar la administración de servicios sin tocar equipos reales. El laboratorio tiene un nodo Proxmox (`pve-pena`), un servidor (`srv-aso`) con un servicio ASO y un cliente (`cli-linux`) para probarlo, en una red aislada.
 
 ## Modalidad
 
-PENDIENTE: fisica o virtualizada; justificar la eleccion.
+Virtualizada, Proxmox VE 9.2 dentro de una máquina de VirtualBox 7.2.4 en el equipo de clase. Se eligió esta opción porque no hay suficientes equipos para toda la clase entonces se eligió que todo el mundo lo hiciera de esta manera.
 
 ## Indice de documentacion
 
@@ -30,12 +30,12 @@ PENDIENTE: fisica o virtualizada; justificar la eleccion.
 
 ## Estado
 
-- [ ] GitHub creado y primer commit publicado
-- [ ] URL entregada y acceso docente comprobado
-- [ ] Modalidad indicada
-- [ ] Inventario
-- [ ] Diagrama de red
-- [ ] Instalacion Proxmox
+- [x] GitHub creado y primer commit publicado
+- [x] URL entregada y acceso docente comprobado
+- [x] Modalidad indicada
+- [x] Inventario
+- [x] Diagrama de red
+- [x] Instalacion Proxmox
 - [ ] Plantilla Linux
 - [ ] VMs/LXC
 - [ ] Servicio ASO
