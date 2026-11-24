@@ -18,7 +18,7 @@ las evidencias utiles; evita frases generales como "he trabajado en Proxmox".
 
 - Objetivo: Fase 2, diseñar la red del laboratorio Proxmox antes de instalar servicios.
 - Acciones realizadas: He rellenado el documento `02-diagrama-red.md` con los apartados Objetivo, Diseño de red, Tabla y Conclusión. Definidos nombre del nodo, interfaz de gestión, bridges, red de laboratorio, IPs, gateway, DNS y puertos.
-- Decisiones y motivos: red 192.168.56.0/24. `vmbr0` como bridge exterior y `vmbr1` como bridge del laboratorio. Nodo en 192.168.56.20, `srv-aso` en 192.168.56.30 y `cli-linux` en 192.168.56.40. El nodo es el gateway de los invitados. DNS 8.8.8.8. De momento solo se documenta el puerto 8008, que sería el puerto de proxmox.
+- Decisiones y motivos: red 192.168.56.0/24. `vmbr0` como bridge exterior y `vmbr1` como bridge del laboratorio. Nodo en 192.168.56.20, `srv-aso` en 192.168.56.30 y `cli-linux` en 192.168.56.40. El nodo es el gateway de los invitados. DNS 8.8.8.8. De momento solo se documenta el puerto 8006, que es el puerto de proxmox.
 - Pruebas y resultados: ninguna todavía, esta sesión es solo diseño y no se ha instalado ni configurado nada.
 - Documentos o evidencias: [Diseño de red](02-diagrama-red.md).
 - Incidencias y solucion o estado pendiente: ninguna.
@@ -48,16 +48,9 @@ commit dentro de su entrada de bitacora.
 - Pruebas y resultados, KVM funciona dentro del nodo. Los tres almacenamientos están activos. Los bridges `vmbr0` y `vmbr1` están UP con las IPs del diseño y la ruta por defecto sale por `vmbr0`. El DNS resuelve nombres y `apt update` descarga de los repositorios de Debian. En el anfitrión hay 138 GB libres, suficientes para que crezca el VDI.
 - Documentos o evidencias: [Instalación y configuración base de Proxmox](03-instalacion-proxmox.md) y las capturas de `evidencias/capturas-o-salidas/`.
 - Incidencias y solucion o estado pendiente:
-  - El `ping` no responde desde el nodo por la limitación del la red del instituto. Comprobé la conexión con `getent hosts` y `apt update`. Solucionado.
-  - Los repositorios enterprise de Proxmox dan `401 Unauthorized` porque necesitan suscripción. No los he desactivado porque no se ha indicado en clase.
+  - El `ping` no responde desde el nodo por la limitación del NAT de VirtualBox. Comprobé la conexión con `getent hosts` y `apt update`. Solucionado.
+  - Los repositorios enterprise de Proxmox dan `401 Unauthorized` porque necesitan suscripción. No los he desactivado porque no se ha indicado en clase. Pendiente.
   - Las copias de seguridad están en el mismo disco que el laboratorio, así que un fallo de ese disco afectaría a las dos cosas. Queda anotado como riesgo.
 - Siguiente paso: Fase 5, crear la plantilla Linux y probar el clonado.
 
 [Volver al indice](../README.md)
-
-
-
-
-
-
-
