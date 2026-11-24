@@ -53,4 +53,14 @@ commit dentro de su entrada de bitacora.
   - Las copias de seguridad están en el mismo disco que el laboratorio, así que un fallo de ese disco afectaría a las dos cosas. Queda anotado como riesgo.
 - Siguiente paso: Fase 5
 
+## Sesion 05 - 24/11/2026
+
+- Objetivo: corregir la documentación a partir de la nota de seguimiento hasta la fase 4 y resolver el error 401 de los repositorios.
+- Acciones realizadas: he rellenado lo que estaba pendiente en el `README.md`, la ficha inicial y la memoria técnica. He desactivado los repositorios enterprise de Proxmox (`pve-enterprise` y `ceph-squid`) y he añadido `pve-no-subscription` desde pve-pena > Actualizaciones > Repositorios. Documentado en el punto 5 de `03-instalacion-proxmox.md`.
+- Decisiones y motivos: uso el repositorio `pve-no-subscription` por indicación del profesor, porque los enterprise necesitan suscripción.
+- Pruebas y resultados: `apt update` termina sin errores y descarga de Debian y de `download.proxmox.com`. En el panel, la actualización de paquetes ya no da error y muestra los paquetes disponibles.
+- Documentos o evidencias: [Instalación y configuración base de Proxmox](03-instalacion-proxmox.md), [Memoria técnica](10-memoria-tecnica.md) y las capturas 21 y 22.
+- Incidencias y solucion o estado pendiente: el error 401 de los repositorios enterprise queda solucionado.
+- Siguiente paso: completar lo nuevo de la fase 4 y empezar la fase 5.
+
 [Volver al indice](../README.md)
