@@ -48,9 +48,9 @@ commit dentro de su entrada de bitacora.
 - Pruebas y resultados, KVM funciona dentro del nodo. Los tres almacenamientos están activos. Los bridges `vmbr0` y `vmbr1` están UP con las IPs del diseño y la ruta por defecto sale por `vmbr0`. El DNS resuelve nombres y `apt update` descarga de los repositorios de Debian. En el anfitrión hay 138 GB libres, suficientes para que crezca el VDI.
 - Documentos o evidencias: [Instalación y configuración base de Proxmox](03-instalacion-proxmox.md) y las capturas de `evidencias/capturas-o-salidas/`.
 - Incidencias y solucion o estado pendiente:
-  - El `ping` no responde desde el nodo por la limitación del NAT de VirtualBox. Comprobé la conexión con `getent hosts` y `apt update`. Solucionado.
-  - Los repositorios enterprise de Proxmox dan `401 Unauthorized` porque necesitan suscripción. No los he desactivado porque no se ha indicado en clase. Pendiente.
+  - El `ping` no responde desde el nodo por la limitación del NAT de VirtualBox. Comprobé la conexión con `getent hosts` y `apt update`.
+  - Los repositorios enterprise de Proxmox dan `401 Unauthorized` porque necesitan suscripción. No los he desactivado porque no se ha indicado en clase.
   - Las copias de seguridad están en el mismo disco que el laboratorio, así que un fallo de ese disco afectaría a las dos cosas. Queda anotado como riesgo.
-- Siguiente paso: Fase 5, crear la plantilla Linux y probar el clonado.
+- Siguiente paso: Fase 5
 
 [Volver al indice](../README.md)
